@@ -1,0 +1,18 @@
+{% extends 'customers/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+  <h2>Customer Dashboard</h2>
+  <a href="{% url 'add_customer' %}">➕ Add Customer</a>
+  <ul>
+    {% for customer in customers %}
+      <li>
+        <a href="{% url 'customer_detail' customer.id %}">{{ customer.name }}</a> |
+        {{ customer.email }} |
+        <a href="{% url 'edit_customer' customer.id %}">✏️</a> |
+        <a href="{% url 'delete_customer' customer.id %}">❌</a>
+      </li>
+    {% empty %}
+      <li>No customers yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
