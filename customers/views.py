@@ -4,13 +4,16 @@ from .forms import CustomerForm, InteractionForm
 
 def dashboard(request):
     customers = Customer.objects.all()
+    
     return render(request, 'customers/dashboard.html', {'customers': customers})
 
 def add_customer(request):
     form = CustomerForm(request.POST or None)
     if form.is_valid():
         form.save()
+        
         return redirect('dashboard')
+    
     return render(request, 'customers/customer_form.html', {'form': form})
 
 def edit_customer(request, pk):
@@ -18,12 +21,15 @@ def edit_customer(request, pk):
     form = CustomerForm(request.POST or None, instance=customer)
     if form.is_valid():
         form.save()
+
         return redirect('dashboard')
+    
     return render(request, 'customers/customer_form.html', {'form': form, 'edit': True})
 
 def delete_customer(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
     customer.delete()
+    
     return redirect('dashboard')
 
 def customer_detail(request, pk):
