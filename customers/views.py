@@ -9,6 +9,7 @@ def dashboard(request):
 
 def add_customer(request):
     form = CustomerForm(request.POST or None)
+
     if form.is_valid():
         form.save()
         
@@ -19,6 +20,7 @@ def add_customer(request):
 def edit_customer(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
     form = CustomerForm(request.POST or None, instance=customer)
+    
     if form.is_valid():
         form.save()
 
@@ -29,7 +31,7 @@ def edit_customer(request, pk):
 def delete_customer(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
     customer.delete()
-    
+
     return redirect('dashboard')
 
 def customer_detail(request, pk):
