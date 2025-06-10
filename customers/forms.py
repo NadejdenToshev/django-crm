@@ -10,3 +10,5 @@ class InteractionForm(forms.ModelForm):
     class Meta:
         model = Interaction
         fields = ['note', 'attachment']
+
+
