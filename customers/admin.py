@@ -5,3 +5,5 @@ from .models import Customer, Interaction
 admin.site.register(Customer)
 admin.site.register(Interaction)
 
+
+
