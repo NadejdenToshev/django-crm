@@ -8,5 +8,7 @@ class Interaction(models.Model):
     attachment = models.FileField(upload_to='attachments/', blank=True, null=True)
 
     def __str__(self):
-        
+
         return f"{self.customer.name} - {self.date.strftime('%Y-%m-%d')}"
+    
+    
