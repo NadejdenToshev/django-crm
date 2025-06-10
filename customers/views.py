@@ -30,11 +30,14 @@ def customer_detail(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
     interactions = customer.interactions.all()
     form = InteractionForm(request.POST or None, request.FILES or None)
+
     if form.is_valid():
         interaction = form.save(commit=False)
         interaction.customer = customer
         interaction.save()
+
         return redirect('customer_detail', pk=pk)
+    
     return render(request, 'customers/customer_detail.html', {
         'customer': customer,
         'interactions': interactions,
