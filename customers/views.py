@@ -20,7 +20,7 @@ def add_customer(request):
 def edit_customer(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
     form = CustomerForm(request.POST or None, instance=customer)
-    
+
     if form.is_valid():
         form.save()
 
@@ -51,5 +51,7 @@ def customer_detail(request, pk):
         'interactions': interactions,
         'form': form
     })
+
+
 
 
